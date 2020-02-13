@@ -44,6 +44,35 @@
         isActive = !isActive;
         renderMyApp();
       });
+      
+      
+      --------------------------------JSX-----------------------------------
+      
+          <div id="root"></div>
+    <script type="text/babel">
+      ReactDOM.render(
+        <h1 className="active">
+          hello, <span>1</span> <span>2</span> <span>3</span>
+        </h1>,
+        document.getElementById("root")
+      );
+
+      setTimeout(() => {
+        ReactDOM.render(
+          <h1 className="active">
+            hello, <span>1</span> <span>100</span> <span>3</span>
+            {<div>YO</div>}                                                      // <-------------------MAGIC
+          </h1>,
+          document.getElementById("root")
+        );
+      }, 1000);
+
+      window.a = (
+        <h1 className="active">
+          hello, <span>1</span> <span>100</span> <span>3</span>
+        </h1>
+      );
+      
     </script>
   </body>
 </html>
