@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <style type="text/css">
+      .active {
+        width: 100px;
+        height: 100px;
+        background-color: black;
+      }
+      .noactive {
+        width: 100px;
+        height: 100px;
+        background-color: rgb(221, 30, 30);
+      }
+    </style>
+
+    <div id="root"></div>
+    <script type="text/babel">
+      let isActive = false;
+
+      const renderMyApp = () => {
+        ReactDOM.render(
+          isActive ? (
+            <div className="active"></div>
+          ) : (
+            <div className="noactive"></div>
+          ),
+          document.getElementById("root")
+        );
+      };
+
+      renderMyApp();
+
+      document.addEventListener("click", () => {
+        isActive = !isActive;
+        renderMyApp();
+      });
+    </script>
+  </body>
+</html>
