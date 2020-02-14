@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <style type="text/css">
+      .main {
+        width: 50rem;
+        height: auto;
+        background-color: rgb(241, 226, 205);
+        border: 1px solid black;
+        border-radius: 1rem;
+        padding: 1rem;
+        margin: 1rem;
+        text-align: justify;
+      }
+      .author {
+        text-align: center;
+        font-family: Georgia, "Times New Roman", Times, serif;
+      }
+      small {
+        background-color: rgb(181, 245, 245);
+      }
+    </style>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const post1 = {
+        authorName: "Никола Тесла",
+        data: "13.02.2020",
+        imgUrl:
+          "https://icon-icons.com/icons2/1371/PNG/256/nikolatesla_90830.png",
+        text:
+          "Никола Те́сла (серб. Ни́кола Те́сла, англ. Nikola Tesla; 10 июля 1856, Смилян, Австрийская империя — 7 января 1943, Нью-Йорк, США) — изобретатель в области электротехники и радиотехники сербского происхождения, учёный, инженер, физик. Родился в Австрийской империи, вырос в Австро-Венгрии, в последующие годы в основном работал во Франции и США. В 1891 году получил гражданство США."
+      };
+      const post2 = {
+        authorName: "Марко Поло",
+        data: "14.02.2020",
+        imgUrl:
+          "https://icon-icons.com/icons2/2132/PNG/256/spyglass_pirate_nautical_adventure_telescope_travel_journey_icon_131590.png",
+        text:
+          "Ма́рко По́ло (итал. Marco Polo; 15 сентября 1254, Венеция — 8 января 1324, там же) — итальянский купец и путешественник, представивший историю своего путешествия по Азии в знаменитой «Книге о разнообразии мира». Несмотря на сомнения в достоверности фактов, изложенных в этой книге, высказываемые с момента её появления и вплоть до настоящего времени, она служит ценным источником знаний по географии, этнографии, истории Армении, Ирана, Китая, Казахстана, Монголии, Индии, Индонезии и других стран в средние века. Эта книга оказала значительное влияние на мореплавателей, картографов, писателей XIV—XVI веков. В частности, она была на корабле Христофора Колумба во время его поиска маршрута в Индию; по подсчётам исследователей, Колумб сделал на ней 70 пометок."
+      };
+      const renderPost = post => {
+        return (
+          <div className="main">
+            <div className="block">
+              <h3 className="author">{post.authorName}</h3>
+              <img src={post.imgUrl} className="img"></img>
+              <p className="txt">{post.text} </p>
+              <small className="data">{post.data}</small>
+            </div>
+          </div>
+        );
+      };
+
+      ReactDOM.render(
+        <div>
+          {renderPost(post1)}
+          {renderPost(post2)}
+        </div>,
+
+        document.getElementById("root")
+      );
+    </script>
+  </body>
+</html>
