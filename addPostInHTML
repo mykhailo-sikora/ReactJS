@@ -33,6 +33,7 @@
     <div id="root"></div>
 
     <script type="text/babel">
+    const { Fragment } = React;
       const post1 = {
         authorName: "Никола Тесла",
         data: "13.02.2020",
@@ -63,10 +64,10 @@
       };
 
       ReactDOM.render(
-        <fragment>
+        <Fragment>
           {renderPost(post1)}
           {renderPost(post2)}
-        </fragment>,
+        </Fragment>,
 
         document.getElementById("root")
       );
