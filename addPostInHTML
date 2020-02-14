@@ -63,10 +63,10 @@
       };
 
       ReactDOM.render(
-        <div>
+        <fragment>
           {renderPost(post1)}
           {renderPost(post2)}
-        </div>,
+        </fragment>,
 
         document.getElementById("root")
       );
