@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Hello World</title>
+    <title>Hello React</title>
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 
@@ -37,7 +37,11 @@
     <div id="root"></div>
 
     <script type="text/babel">
+      // DATA
+
       const { Fragment } = React;
+
+      let loaded = false;
       const post1 = {
         authorName: "Никола Тесла",
         data: "13.02.2020",
@@ -57,32 +61,114 @@
         imgPost:
           "https://icon-icons.com/icons2/1363/PNG/128/travel-holiday-vacation-310_89073.png"
       };
-      const renderPost = post => {
+
+      let post1IsClosed = false;
+
+      let post2IsClosed = false;
+
+      // UI
+
+      const MainPost = props => {
+        const { src } = props;
+        return { src } && <img src={src} className="img"></img>;
+      };
+
+      const PostImage = props => {
+        const { src } = props;
+        return src && <img src={src} className="imgPost"></img>;
+      };
+
+      const Post = props => {
+        const { post, isClosed, onCloseRequest } = props;
+
         return (
-          <div className="main">
-            <div className="block">
-              <h3 className="author">{post.authorName}</h3>
-              <img src={post.imgUrl} className="img"></img>
-              <div className="block1">
-                <p className="txt">{post.text} </p>
-                {post.imgPost && (
-                  <img src={post.imgPost} className="imgPost"></img>
-                )}
+          isClosed || (
+            <div className="main">
+              <div className="block">
+                <h3 className="author">{post.authorName}</h3>
+                <MainPost src={post.imgUrl} />
+              </div>
+              <div className="block2">
+                <p className="txt">{post.text}</p>
+                <PostImage src={post.imgPost} />
               </div>
               <small className="data">{post.data}</small>
+              <div>
+                <button onClick={onCloseRequest}>Close!</button>
+              </div>
             </div>
-          </div>
+          )
         );
       };
 
-      ReactDOM.render(
-        <Fragment>
-          {renderPost(post1)}
-          {renderPost(post2)}
-        </Fragment>,
+      const App = props => {
+        const {
+          loaded,
+          post1,
+          post2,
+          post1IsClosed,
+          post2IsClosed,
+          closePost1,
+          closePost2
+        } = props.data;
+        return loaded ? (
+          <Fragment>
+            <Post
+              post={post1}
+              isClosed={post1IsClosed}
+              onCloseRequest={closePost1}
+            />
+            <Post
+              post={post2}
+              isClosed={post2IsClosed}
+              onCloseRequest={closePost2}
+            />
+          </Fragment>
+        ) : (
+          <div>Please wait, loading</div>
+        );
+      };
 
+      function renderUI() {
+        ReactDOM.render(
+          <App
+            data={{
+              loaded,
+              post1,
+              post2,
+              post1IsClosed,
+              post2IsClosed,
+              closePost1,
+              closePost2
+            }}
+          />,
+          document.getElementById("root")
+        );
+      }
+      ReactDOM.render(
+        <App data={{ loaded, post1, post2 }} />,
         document.getElementById("root")
       );
+
+      //  LOGIC
+
+      renderUI();
+
+      const setLoaded = () => {
+        loaded = true;
+        renderUI();
+      };
+
+      const closePost1 = () => {
+        post1IsClosed = true;
+        renderUI();
+      };
+      const closePost2 = () => {
+        post2IsClosed = true;
+        renderUI();
+      };
+
+      setTimeout(setLoaded, 2000);
     </script>
   </body>
 </html>
