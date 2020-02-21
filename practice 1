@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <style type="text/css">
+      .main {
+        border: 1px solid black;
+        width: 50%;
+        margin: 0.5rem;
+        padding: 0.5rem;
+        background-color: rgb(231, 236, 229);
+      }
+
+      .txt {
+        border: 0.5px solid rgb(223, 175, 175);
+      }
+
+      .avka {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .postImg {
+        margin-left: 20rem;
+      }
+      .date {
+        margin-left: 31rem;
+      }
+    </style>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      let user1 = {
+        authorName: "Ivan",
+        ava:
+          "https://cdn.icon-icons.com/icons2/316/PNG/128/Cool-Male-Avatars-03_34322.png",
+        date: "20.02.02",
+        postImg:
+          "https://icon-icons.com/icons2/1038/PNG/32/ok_good_check_mark_approved_icon-icons.com_76289.png",
+        text:
+          "Alteration literature to or an sympathize mr imprudence. Of is ferrars subject as enjoyed or tedious cottage. Procuring as in resembled by in agreeable. Next long no gave mr eyes. Admiration advantages no he celebrated so pianoforte unreserved. Not its herself forming charmed amiable. Him why feebly expect future now."
+      };
+
+      let user2 = {
+        authorName: "Mykhailo",
+        ava:
+          "https://cdn.icon-icons.com/icons2/316/PNG/128/Cool-Male-Avatars-07_34318.png",
+        date: "21.02.02",
+        postImg:
+          "https://icon-icons.com/icons2/1038/PNG/32/ok_good_check_mark_approved_icon-icons.com_76289.png",
+        text:
+          "Breakfast procuring nay end happiness allowance assurance frankness. Met simplicity nor difficulty unreserved who. Entreaties mr conviction dissimilar me astonished estimating cultivated. On no applauded exquisite my additions. Pronounce add boy estimable nay suspected. You sudden nay elinor thirty esteem temper. Quiet leave shy you gay off asked large style.Oh acceptance apartments up sympathize astonished delightful. Waiting him new lasting towards. Continuing melancholy especially so to. Me unpleasing impossible in attachment announcing so astonished. What ask leaf may nor upon door. Tended remain my do stairs. Oh smiling amiable am so visited cordial in offices hearted."
+      };
+
+      //  1 спосіб*
+      // const UserOne = () => {
+      //   return (
+      //     <div className="main">
+      //       <div>{user1.authorName}</div>
+      //       <img src={user1.ava} />
+      //       <div>{user1.date}</div>
+      //       <img src={user1.postImg} />
+      //       <div>{user1.text}</div>
+      //     </div>
+      //   );
+      // };
+
+      //2
+
+      const Post = ({ authorName, ava, date, postImg, text }) => {
+        return (
+          <div className="main">
+            <div className="name">Hi, my name {authorName}!</div>
+            <img src={ava} className="avka" />
+
+            <br />
+            <div className="txt">{text}</div>
+            {postImg && <img src={postImg} className="postImg" />}
+            <div className="date">Дата публікації: {date}</div>
+          </div>
+        );
+      };
+
+      function App() {
+        return (
+          <div className="App">
+            {/* <UserOne />  1 спосіб*/}
+            {Post(user1)}
+            {Post(user2)}
+          </div>
+        );
+      }
+
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
