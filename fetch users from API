@@ -31,34 +31,51 @@ class App extends React.Component {
       );
   }
 
+  renderError = () => {
+    const { error } = this.state;
+    return <div>Помилка: {error.message}</div>;
+  };
+
+  renderInfoAboutLoading = () => {
+    return <div className="loading">Триває завантаження...</div>;
+  };
+
+  renderUsers = () => {
+    const { items } = this.state;
+    return (
+      <div>
+        {items.map(item => (
+          <div className="mainBlock" key={item.id}>
+            <span>Name: {item.name}</span>
+            <br />
+            <span>Nikname: {item.username}</span>
+            <br />
+            <span>Email: {item.email}</span>
+            <br />
+            <span>
+              Address:{" "}
+              {[
+                item.address.street,
+                ", ",
+                item.address.suite,
+                ", ",
+                item.address.city
+              ]}
+            </span>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
   render() {
-    const { error, isLoaded, items } = this.state;
+    const { error, isLoaded } = this.state;
     if (error) {
-      return <div>Помилка: {error.message}</div>;
+      return <this.renderError />;
     } else if (!isLoaded) {
-      return <div>Downloading...</div>;
+      return <this.renderInfoAboutLoading />;
     } else {
-      return (
-        <div>
-          {items.map(item => (
-            <div className="mainBlock" key={item.id}>
-              <p>Name: {item.name}</p>
-              <p>Nikname: {item.username}</p>
-              <p>Email: {item.email}</p>
-              <p>
-                Address:{" "}
-                {[
-                  item.address.street,
-                  ", ",
-                  item.address.suite,
-                  ", ",
-                  item.address.city
-                ]}
-              </p>
-            </div>
-          ))}
-        </div>
-      );
+      return <this.renderUsers />;
     }
   }
 }
