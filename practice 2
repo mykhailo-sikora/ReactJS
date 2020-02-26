@@ -1,0 +1,132 @@
+----------------------------------------------------App.js-----------------------------
+
+import React, {useState} from 'react';
+import {Post} from './components/Post/Post';
+import './App.css';
+import ReactDOM from "react-dom";
+import {Button} from './components/Button/Button';
+
+const allUsers = [
+    {
+        id: 'jhfngchy',
+        authorName: "bz",
+        data: "17.02.2020",
+        mood: "почувається натхненно",
+        imgAuthor: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Colorful_spring_garden.jpg/1200px-Colorful_spring_garden.jpg",
+        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo maxime alias, saepe veniam delectus dolor vitae magnam nam vero possimus reprehenderit ab facilis est laboriosam culpa minus aliquid dolorem quam?",
+        imgPost: null
+
+    },
+    {
+        id: 'dsdsdsd',
+        authorName: "aaa",
+        data: "15.02.2020",
+        mood: "почувається вмотивовано",
+        imgAuthor: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Colorful_spring_garden.jpg/1200px-Colorful_spring_garden.jpg",
+        text: "Spring is comming",
+        imgPost: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Colorful_spring_garden.jpg/1200px-Colorful_spring_garden.jpg"
+    },
+    {
+        id: 'sasa',
+        authorName: "ffff",
+        data: "15.02.2020",
+        mood: "почувається вмотивовано",
+        imgAuthor: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Colorful_spring_garden.jpg/1200px-Colorful_spring_garden.jpg",
+        text: "Spring is comming",
+        imgPost: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Colorful_spring_garden.jpg/1200px-Colorful_spring_garden.jpg"
+    },
+    {
+        id: 'sssssssddsdsdsdsdsd',
+        authorName: "qwe",
+        data: "15.02.2020",
+        mood: "почувається вмотивовано",
+        imgAuthor: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Colorful_spring_garden.jpg/1200px-Colorful_spring_garden.jpg",
+        text: "Spring is comming",
+        imgPost: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Colorful_spring_garden.jpg/1200px-Colorful_spring_garden.jpg"
+    }
+];
+
+
+const App = () => {
+    const [posts, setPosts] = useState(allUsers);
+    const sortByAuthor = () => {
+
+        const sorted = allUsers.sort((a, b) => {
+            if (a.authorName > b.authorName) {
+                return 1
+            }
+            if (a.authorName < b.authorName) {
+                return -1
+            }
+            return 0;
+
+        })
+        setPosts([...sorted]);
+    };
+    return (
+        <div className='App'>
+            <Button label='Sort by author' onClick={sortByAuthor}/>
+            {/*<Button label='Sort by author' onClick={sortByDate}/>*/}
+            {
+                posts.map((post => {
+                    return (
+                        <Post post={post} key={post.id}/>
+                    )
+                }))
+            }
+        </div>
+    );
+}
+ReactDOM.render(<App/>, document.getElementById('root'))
+export default App;
+
+----------------------------------------------------Post.js-----------------------
+import React from "react";
+import './Post.css';
+import App from "../../App";
+
+export const Post = props => {
+    const {post, isClosed, onCloseRequest} = props;
+    const {imgAuthor, authorName, mood, data, text, imgPost} = post;
+    return isClosed || (
+        <div className="main">
+            <div className="block">
+                <img src={imgAuthor} className="img"></img>
+                <h1>{authorName}</h1>
+                <p className="text"> {mood} </p>
+                <small className="data">{data}</small>
+            </div>
+
+            <div className="block1">
+                <p className="text">{text}</p>
+                {/*<PostImage src={imgPost}/>*/}
+            </div>
+            <div className="button">
+                <button onClick={onCloseRequest}>Close</button>
+            </div>
+        </div>
+    );
+};
+
+----------------------------------------------------Button.js----------------------------------
+
+import React from "react";
+
+export const Button = (props) => {
+    const {
+        id,
+        type = 'button',
+        onClick,
+        label = "Click me",
+        className
+    } = props;
+
+    return (
+        <button
+            className={className}
+            id={id}
+            onClick={onClick}
+            type={type}
+        >{label}</button>
+    );
+}
