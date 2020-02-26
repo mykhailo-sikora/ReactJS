@@ -130,3 +130,55 @@ export const Button = (props) => {
         >{label}</button>
     );
 }
+----------------------------------------------------Post.css-----------------------------
+
+
+
+.img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+h1{
+    font-size: 20px;
+    color: rgba(64, 30, 255, 0.205);
+}
+
+
+.block {
+    display: flex;
+    text-align: right;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.text {
+    font-size: 16px;
+    color: black;
+}
+
+.block1 {
+    margin-top: 10px;
+    width: 500px;
+    text-align: center;
+
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid darkgrey;
+    width: 500px;
+    background-color: limegreen;
+    margin: 0 auto;
+}
+
+.img1 {
+    width: 400px;
+    height: 250px;
+}
+
+.button{
+    text-align: right;
+}
