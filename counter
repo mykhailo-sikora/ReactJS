@@ -1,0 +1,36 @@
+import React, {useState, Fragment} from 'react';
+import logo from './logo.svg';
+import './App.css';
+
+
+
+function useCounter({myState}) {
+    const [count, setCount] = useState(myState)
+    const incrementBy1 = () => {
+        setCount(count + 1)
+    };
+    const decrementBy1 = () => setCount(() => {
+        return count - 1 >= 0 ? count - 1 : 0;
+    });
+    return [count, {incrementBy1, decrementBy1, setCount}]
+}
+
+
+export const App2 = () => {
+    const [count, {incrementBy1, decrementBy1, setCount}] = useCounter({myState: 0});
+    return (
+        <Fragment>
+            <div style={{textAlign: 'center'}}>
+                <h1>{count}</h1>
+                <button type="button" onClick={incrementBy1} className="btn btn-danger">Add 1</button>
+                <button type="button" onClick={decrementBy1} className="btn btn-warning">Add -1</button>
+            </div>
+
+
+        </Fragment>
+    )
+
+}
+
+
+export default App2;
