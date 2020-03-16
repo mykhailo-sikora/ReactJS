@@ -1,0 +1,22 @@
+const Switcher = () => {
+    const [isOn, setIsOn] = useState(false);
+    const toggle = () => {
+        const newSwitch = !isOn;
+        setIsOn(newSwitch);
+    }
+    return (
+        <div className={`switcher ${isOn ? 'isOn' : 'isOff'}`} onClick={toggle}>
+            <div className='changer'></div>
+        </div>
+    )
+}
+
+const App = () => {
+    return (
+        <div className='App'>
+            <Switcher/>
+        </div>
+    )
+}
+
+export default App
