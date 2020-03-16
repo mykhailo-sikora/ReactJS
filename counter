@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 
+// function component
 
 function useCounter({myState}) {
     const [count, setCount] = useState(myState)
@@ -34,3 +35,42 @@ export const App2 = () => {
 
 
 export default App2;
+
+// class component
+
+class App extends Component {
+    constructor(props) {
+        super(props);
+        // this.myCLickAdd1 = this.myCLickAdd1.bind(this);
+        // this.myCLickAddMinus1 = this.myCLickAddMinus1.bind(this);
+    }
+
+    state = {
+        count: 0
+    };
+
+    myCLickAdd1 = () => {
+        const {count} = this.state;
+        this.setState({count: count + 1})
+    };
+
+    myCLickAddMinus1 = () => {
+        const chngCount = this.state.count - 1;
+        this.setState({count: (chngCount > 0) ? chngCount : 0});
+    };
+
+    render() {
+        return (
+            <Fragment>
+                <div style={{textAlign: 'center'}}>
+                    <h1>{this.state.count}</h1>
+                    <button type="button" onClick={this.myCLickAdd1} className="btn btn-danger">Add 1</button>
+                    <button type="button" onClick={this.myCLickAddMinus1} className="btn btn-warning">Add -1</button>
+                </div>
+            </Fragment>
+        );
+    }
+}
+
+export default App;
+
