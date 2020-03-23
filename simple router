@@ -1,0 +1,51 @@
+import React from "react";
+import { BrowserRouter, Route, Link, Switch, NavLink } from "react-router-dom";
+import logo from "./logo.svg";
+import "./App.css";
+import { Component } from "react";
+import { Fragment } from "react";
+
+class Details extends Component {
+  render() {
+    return <h1>Details page</h1>;
+  }
+}
+
+class Main extends Component {
+  render() {
+    return <h1>Main page</h1>;
+  }
+}
+
+class NavBar extends Component {
+  render() {
+    return (
+      <div>
+        <ul>
+          <li>
+            <NavLink to="/">Main page</NavLink>
+          </li>
+          <li>
+            <NavLink to="/details">Details page</NavLink>
+          </li>
+        </ul>
+      </div>
+    );
+  }
+}
+
+class App extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <NavBar />
+        <Switch>
+          <Route exact path="/" component={Main} />
+          <Route exact path="/details" component={Details} />
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+}
+
+export default App;
